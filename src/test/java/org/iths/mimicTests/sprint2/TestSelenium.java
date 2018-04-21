@@ -13,7 +13,7 @@ public class TestSelenium {
 	private WebDriver webdriver;
 
 	public TestSelenium() {
-		System.setProperty("webdriver.chrome.driver", "commonFiles/chromedrive/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "commonFiles/webDriver/chromedriver.exe");
 		webdriver = new ChromeDriver();
 		webdriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
