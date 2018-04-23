@@ -6,7 +6,7 @@ public class TestSeleniumMethods {
 
 	@Test
 	public void test() {
-		TestSelenium driver = new TestSelenium();
+		SeleniumMethods driver = new SeleniumMethods();
 		driver.openURL("http://www.ikea.se"); 
 		driver.clickLink();
 		driver.delay(2000);
