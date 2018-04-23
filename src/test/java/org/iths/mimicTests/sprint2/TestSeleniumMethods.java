@@ -2,7 +2,7 @@ package org.iths.mimicTests.sprint2;
 
 import org.junit.Test;
 
-public class SeleniumWorkingTest {
+public class TestSeleniumMethods {
 
 	@Test
 	public void test() {
