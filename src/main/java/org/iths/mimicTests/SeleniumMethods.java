@@ -1,4 +1,4 @@
-package org.iths.mimicTests.sprint2;
+package org.iths.mimicTests;
 
 import java.util.concurrent.TimeUnit;
 

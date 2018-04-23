@@ -1,5 +1,6 @@
 package org.iths.mimicTests.sprint2;
 
+import org.iths.mimicTests.SeleniumMethods;
 import org.junit.Test;
 
 public class TestSeleniumMethods {
