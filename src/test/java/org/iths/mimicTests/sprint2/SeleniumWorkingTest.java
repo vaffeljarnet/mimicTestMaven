@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class SeleniumWorkingTest {
 
-	//@Test
+	@Test
 	public void test() {
 		TestSelenium driver = new TestSelenium();
 		driver.openURL("http://www.ikea.se"); 
