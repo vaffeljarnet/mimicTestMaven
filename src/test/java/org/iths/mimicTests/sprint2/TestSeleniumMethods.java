@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class TestSeleniumMethods {
 
-	@Test
+	//@Test
 	public void test() {
 		SeleniumMethods driver = new SeleniumMethods();
 		driver.openURL("http://www.ikea.se"); 
