@@ -1,4 +1,4 @@
-package org.iths.mimicTests;
+package org.iths.mimicTests.sprint2;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class SeleniumMethods {
+public class MimicGuiSelenium {
 
 	public static final String USERNAME = "vaffeljarnet";
 	public static final String ACCESS_KEY = "4f0cc6b2-1b6a-46f4-81c4-7c1fc020c40d";
@@ -20,7 +20,7 @@ public class SeleniumMethods {
 	 
 	private WebDriver webdriver;
 
-	public SeleniumMethods() {
+	public MimicGuiSelenium() {
 		DesiredCapabilities caps = DesiredCapabilities.chrome();
 	    caps.setCapability("platform", "Windows 10");
 	    caps.setCapability("version", "latest");
@@ -36,9 +36,21 @@ public class SeleniumMethods {
 		webdriver.get(siteURL);
 	}  
 	
-	public void clickLink() {
-		WebElement element = webdriver.findElement(By.cssSelector("div.right-section-container > ul:nth-of-type(1) > li > a.arrowLink"));
+	public void sendText(String text) {
+		WebElement element = webdriver.findElement(By.xpath("/html/body/form/textarea"));
 		element.click();
+		delay(2000);
+		element.sendKeys(text);
+	}
+	
+	public void clickLearn() {
+		WebElement element = webdriver.findElement(By.cssSelector("#learn"));
+		element.click();
+	}
+	
+	public String getValue() {
+		WebElement element = webdriver.findElement(By.cssSelector("body"));
+		return element.getText();
 	}
 	
 	public void delay(int milliseconds) {
