@@ -44,6 +44,8 @@ public class TestMimicService {
 			service = new HttpServiceCaller();
 			service.executeGetRequest(host + "LearnNextResponse?text=4");
 			service.executeGetRequest(host + "2+2");
+			helper.wait(1000);
+			service.executeGetRequest(host + "2+2");
 			service.executeGetRequest(host +"unlearn");
 			Assert.assertEquals(responseForm, service.executeGetRequest(host+"2+2"));
 			
@@ -65,31 +67,29 @@ public class TestMimicService {
 
 			//Store request #1
 			service.executeGetRequest(host + "LearnNextResponse?text=2");
-			helper.wait(500);
-			String response = service.executeGetRequest(host + "1+1");
-			Assert.assertEquals("2", response);
-			helper.wait(500);
+			helper.wait(20000);
+			Assert.assertEquals("2", service.executeGetRequest(host + "1+1"));
 			//Store request #2
+			helper.wait(20000);
 			service.executeGetRequest(host + "LearnNextResponse?text=4");
-			helper.wait(500);
-			response = service.executeGetRequest(host + "2+2");
-			helper.wait(500);
-			Assert.assertEquals("4", response);
-			helper.wait(500);
+			helper.wait(20000);
+			Assert.assertEquals("4", service.executeGetRequest(host + "2+2"));
 			//Store request #3
+			helper.wait(20000);
 			service.executeGetRequest(host + "LearnNextResponse?text=6");
-			helper.wait(500);
-			response = service.executeGetRequest(host + "3+3");
-			helper.wait(500);
-			Assert.assertEquals("6", response);
-
+			helper.wait(20000);
+			Assert.assertEquals("6", service.executeGetRequest(host + "3+3"));
+			
 			//Unlearn request #2
 			service.executeGetRequest(host + "2+2");
+			helper.wait(20000);
 			service.executeGetRequest(host +"unlearn");
 
 			//Check that request #2 is unlearned, and request #1 and #3 still give the correct response
 			Assert.assertEquals(responseForm, service.executeGetRequest(host+"2+2"));
+			helper.wait(20000);
 			Assert.assertEquals("2", service.executeGetRequest(host+"1+1"));
+			helper.wait(20000);
 			Assert.assertEquals("6", service.executeGetRequest(host+"3+3"));
 			
 		}else {
@@ -111,52 +111,17 @@ public class TestMimicService {
 
 			//Store a request with wrong answer
 			service.executeGetRequest(host + "LearnNextResponse?text=5");
+			helper.wait(1000);
 			service.executeGetRequest(host + "2+2");
-
+			helper.wait(1000);
 			//Correct the response for the same request
 			service.executeGetRequest(host + "LearnNextResponse?text=4");
+			helper.wait(1000);
 			service.executeGetRequest(host + "2+2");
-
+			helper.wait(1000);
 			//Check that the request is giving the correct response
 			Assert.assertEquals("4", service.executeGetRequest(host + "2+2"));
 			
-		}else {
-			fail(helper.errorString());
-		}
-	}
-
-	/**
-	 * Terminates the Mimic service and checks that it isn't
-	 * active.
-	 */
-	//@Test
-	public void TestMimicService115closeMimic() {
-		if(helper.jarIsRunning()) {
-
-			service = new HttpServiceCaller();
-			
-			service.executeGetRequest(host+"KillMimic");
-			helper.wait(100);
-			Assert.assertEquals("Error",service.executeGetRequest(host));	
-			
-		}else {
-			fail(helper.errorString());
-		}
-	}
-	
-	/**
-	 * Stores a request with xml format and checks that 
-	 * the request has been identified as xml.
-	 */
-	@Test
-	public void TestMimicGUI115storeXmlRequest() {
-		if(helper.jarIsRunning()) {
-
-			service = new HttpServiceCaller();			
-			service.executeGetRequest(host+"LearnNextResponse?text=<value>1</value>&mime=application/xml");
-			System.out.print(service.executeGetRequest(host+"xml"));
-			Assert.assertTrue(service.executeGetRequest(host+"xml").toUpperCase().contains("XML"));
-
 		}else {
 			fail(helper.errorString());
 		}

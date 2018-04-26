@@ -12,6 +12,13 @@ public class MimicJarHelper {
 		if(!service.executeGetRequest(host).equals("Error")) {
 			killMimic();
 			return true;
+		}else if(service.executeGetRequest(host).equals("Error")){
+			wait(1000);
+			if(!service.executeGetRequest(host).equals("Error")) {
+				return true;
+			}else {
+				return false;
+			}
 		}else {
 			return false;
 		}
@@ -20,7 +27,7 @@ public class MimicJarHelper {
 	public void killMimic() {
 		service = new HttpServiceCaller();
 		service.executeGetRequest(host+"KillMimic");
-		wait(100);
+		wait(1000);
 	}
 	
 	public String errorString() {
