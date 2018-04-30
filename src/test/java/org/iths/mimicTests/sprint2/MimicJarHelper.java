@@ -10,7 +10,7 @@ public class MimicJarHelper {
 	public boolean jarIsRunning() {
 		service = new HttpServiceCaller();
 		if(!service.executeGetRequest(host).equals("Error")) {
-			killMimic();
+			resetMimic();
 			return true;
 		}else if(service.executeGetRequest(host).equals("Error")){
 			wait(1000);
@@ -28,6 +28,11 @@ public class MimicJarHelper {
 		service = new HttpServiceCaller();
 		service.executeGetRequest(host+"KillMimic");
 		wait(1000);
+	}
+	
+	public void resetMimic() {
+		service = new HttpServiceCaller();
+		service.executeGetRequest(host+"unlearnAll");
 	}
 	
 	public String errorString() {
